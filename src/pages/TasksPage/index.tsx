@@ -1,12 +1,21 @@
 import { FC } from 'react';
 
+import { NavLink, useParams } from 'react-router-dom';
+
+import { ROUTES } from '../../constants';
+
+import style from './styles.module.css';
+
 export const TasksPage: FC = () => {
+  const { id } = useParams();
+
   return (
     <div>
-      <div>Task1</div>
-      <div>Task2</div>
-      <div>Task3</div>
-      <div>Task4</div>
+      <NavLink to={ROUTES.PROJECT} role="button" className={style.btnLink}>
+        Main
+      </NavLink>
+
+      <div>{id}</div>
     </div>
   );
 };
