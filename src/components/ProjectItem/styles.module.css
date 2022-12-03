@@ -1,0 +1,17 @@
+.projectContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: #d2d2d2 solid 1px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+
+}
+.title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 44px;
+    margin-left: 20px;
+}

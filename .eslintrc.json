@@ -35,9 +35,11 @@
         "**/*.spec.js",
         "**/*.test.ts",
         "**/*.test.tsx",
-        "**/*.spec.tsx"
+        "**/*.spec.tsx",
+        "./src/state/reducers/*.ts"
     ] }],
     "rules": {
+        "default-param-last" : "off",
         "import/order": [
             "error",
             {
