@@ -1,0 +1,35 @@
+.label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: -0.41px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.inputPhotoContainer{
+    width: 125px;
+    height: 85px;
+    background-color: rgba(118, 118, 128, 0.24);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.photo{
+    width: 60px;
+    height: 60px;
+}
+
+.error{
+    position: absolute;
+    bottom: -18px;
+    color: #ee1f48;
+}

@@ -1,4 +1,11 @@
-.btnLink{
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttonLink{
     display: flex;
     justify-content: center;
     align-items: center;

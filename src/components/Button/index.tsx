@@ -4,7 +4,7 @@ import style from './styles.module.css';
 
 type ButtonProps = {
   textChildren: string;
-  onClick: () => void;
+  onClick?: () => void;
   backgroundColor: string;
 };
 
@@ -13,13 +13,13 @@ export const Button: FC<ButtonProps> = props => {
 
   const onButtonPress = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    onClick();
+    if (onClick) onClick();
   };
 
   return (
     <button
       onClick={onButtonPress}
-      type="button"
+      type="submit"
       className={style.btn}
       style={{ backgroundColor }}
     >
