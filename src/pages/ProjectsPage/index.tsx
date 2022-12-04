@@ -2,8 +2,7 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ProjectItem } from '../../components';
-import { Button } from '../../components/Button';
+import { ProjectItem, Button } from '../../components';
 import { addProject } from '../../state/actions/projects';
 import { getProjects } from '../../state/selectors/projects';
 

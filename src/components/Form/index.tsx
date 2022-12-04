@@ -2,9 +2,14 @@ import React, { ChangeEvent, FC, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import photoForm from '../../assets/photo.svg';
+import { STATUS } from '../../constants';
+import { addTask } from '../../state/actions/tasks';
+import { Priority } from '../../state/reducers/tasks';
 import { FileInput } from '../FileInput';
 import { RadioButton } from '../RadioButton';
 import { TextInput } from '../TextInput';
@@ -16,18 +21,20 @@ export type FormValues = {
   description: string;
   expiry: string;
   file: null;
-  priority: string;
+  priority: Priority;
 };
 
 const formSchema = Yup.object({
   title: Yup.string().required('Required'),
   description: Yup.string().required('Required'),
   expiry: Yup.string().required('Required'),
-  file: Yup.mixed().required('Required'),
+  file: Yup.mixed(),
   priority: Yup.mixed().required('Required'),
 });
 
 export const Form: FC = () => {
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
@@ -40,6 +47,8 @@ export const Form: FC = () => {
 
   const [avatarPreview, setAvatarPreview] = useState(photoForm);
 
+  const dispatch = useDispatch();
+
   const addPhoto = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.files) {
       setAvatarPreview(URL.createObjectURL(event.target.files?.[0]));
@@ -49,7 +58,27 @@ export const Form: FC = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = data => {
-    console.log('data', data);
+    const { title, expiry, file, priority, description } = data;
+    const startDate = new Date().toLocaleDateString('ru-RU');
+    const taskId = String(Date.now());
+    const status = STATUS.QUEUE;
+
+    if (id) {
+      dispatch(
+        addTask({
+          title,
+          expiry,
+          description,
+          priority,
+          projectId: id,
+          file,
+          startDate,
+          id: taskId,
+          status,
+        }),
+      );
+    }
+
     setAvatarPreview(photoForm);
     reset();
   };
