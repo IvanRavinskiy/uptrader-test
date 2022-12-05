@@ -73,7 +73,7 @@ export const Form: FC = () => {
           projectId: id,
           file,
           startDate,
-          id: taskId,
+          taskId,
           status,
         }),
       );

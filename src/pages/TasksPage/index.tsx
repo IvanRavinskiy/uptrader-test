@@ -34,10 +34,12 @@ export const TasksPage: FC = () => {
           backgroundColor="purple"
         />
       </div>
-      {tasks[id].map(({ id, title, description, startDate, expiry }) => {
+      {tasks[id].tasks.map(({ taskId, title, description, startDate, expiry }) => {
         return (
           <Task
-            key={id}
+            key={taskId}
+            taskId={taskId}
+            projectId={id}
             title={title}
             description={description}
             startDate={startDate}

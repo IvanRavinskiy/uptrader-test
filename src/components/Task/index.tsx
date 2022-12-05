@@ -1,8 +1,14 @@
 import { FC } from 'react';
 
+import { useDispatch } from 'react-redux';
+
+import { removeTask, updateTask } from '../../state/actions/tasks';
+
 import style from './styles.module.css';
 
 type TaskProps = {
+  taskId: string;
+  projectId: string;
   title: string;
   description: string;
   expiry: string;
@@ -10,10 +16,19 @@ type TaskProps = {
 };
 
 export const Task: FC<TaskProps> = props => {
-  const { title, description, startDate, expiry } = props;
+  const { taskId, projectId, title, description, startDate, expiry } = props;
 
+  const dispatch = useDispatch();
   // const startDateMoment = moment(startDate, 'DD.MM.YYY').toDate();
   // const expiryMoment = moment(expiry).toDate();
+
+  const onDeletePress = (): void => {
+    dispatch(removeTask(taskId, projectId));
+  };
+
+  const onEditPress = (): void => {
+    dispatch(updateTask(taskId, { title: 'updated', description: 'updated' }, projectId));
+  };
 
   return (
     <div className={style.container}>
@@ -31,10 +46,10 @@ export const Task: FC<TaskProps> = props => {
         </div>
       </div>
       <div className={style.buttonsContainer}>
-        <button type="button" className={style.editButton}>
+        <button onClick={onEditPress} type="button" className={style.editButton}>
           Edit
         </button>
-        <button type="button" className={style.deleteButton}>
+        <button onClick={onDeletePress} type="button" className={style.deleteButton}>
           Delete
         </button>
       </div>
