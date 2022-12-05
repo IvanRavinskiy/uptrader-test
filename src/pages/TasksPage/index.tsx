@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { Button, Modal } from '../../components';
+import { Task } from '../../components/Task';
 import { ROUTES } from '../../constants';
 import { getTasks } from '../../state/selectors/tasks';
 
@@ -12,9 +13,11 @@ import style from './styles.module.css';
 export const TasksPage: FC = () => {
   const [isShowModal, setIsShowModal] = useState(false);
 
+  const { id } = useParams();
+
   const tasks = useSelector(getTasks);
 
-  console.log('tasks', tasks);
+  if (!id) return <div>ERROR</div>;
 
   return (
     <div>
@@ -31,6 +34,17 @@ export const TasksPage: FC = () => {
           backgroundColor="purple"
         />
       </div>
+      {tasks[id].map(({ id, title, description, startDate, expiry }) => {
+        return (
+          <Task
+            key={id}
+            title={title}
+            description={description}
+            startDate={startDate}
+            expiry={expiry}
+          />
+        );
+      })}
     </div>
   );
 };
