@@ -2,7 +2,7 @@
   "name": "uptrader-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://IvanRavinskiy.github.io/uptradet-test",
+  "homepage": "https://IvanRavinskiy.github.io/uptrader-test",
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@testing-library/jest-dom": "^5.14.1",
