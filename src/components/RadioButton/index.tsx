@@ -1,8 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { PRIORITY } from '../../constants';
+import { useRadioButtonHandle } from '../../hooks/useRadioButtonHandle';
 
 import style from './styles.module.css';
 
@@ -23,25 +24,14 @@ type RadioButtonProps = {
 export const RadioButton: FC<RadioButtonProps> = props => {
   const { register, error } = props;
 
-  const [isActiveLow, setIsActiveLow] = useState(false);
-  const [isActiveMedium, setIsActiveMedium] = useState(false);
-  const [isActiveHigh, setIsActiveHigh] = useState(false);
-
-  const onLowPress = (): void => {
-    setIsActiveLow(true);
-    setIsActiveMedium(false);
-    setIsActiveHigh(false);
-  };
-  const onMediumPress = (): void => {
-    setIsActiveLow(false);
-    setIsActiveMedium(true);
-    setIsActiveHigh(false);
-  };
-  const onHighPress = (): void => {
-    setIsActiveLow(false);
-    setIsActiveMedium(false);
-    setIsActiveHigh(true);
-  };
+  const {
+    isActiveLow,
+    isActiveMedium,
+    isActiveHigh,
+    onLowPress,
+    onMediumPress,
+    onHighPress,
+  } = useRadioButtonHandle();
 
   return (
     <>

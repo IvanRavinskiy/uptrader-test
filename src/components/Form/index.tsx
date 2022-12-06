@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import photoForm from '../../assets/photo.svg';
+import { useRadioButtonHandle } from '../../hooks/useRadioButtonHandle';
 import { addTask } from '../../state/actions/tasks';
 import { Priority } from '../../state/reducers/tasks';
 import { FileInput } from '../FileInput';
@@ -44,6 +45,8 @@ export const Form: FC = () => {
     resolver: yupResolver(formSchema),
   });
 
+  const { resetAllButtons } = useRadioButtonHandle();
+
   const [avatarPreview, setAvatarPreview] = useState(photoForm);
 
   const dispatch = useDispatch();
@@ -77,6 +80,7 @@ export const Form: FC = () => {
     }
 
     setAvatarPreview(photoForm);
+    resetAllButtons();
     reset();
   };
 
