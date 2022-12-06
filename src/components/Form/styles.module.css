@@ -1,7 +1,6 @@
 .formContainer {
-    border: #d2d2d2 solid 1px;
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: #BB8A52;
     padding: 10px;
 }
 
@@ -20,7 +19,7 @@
     font-weight: 400;
     font-size: 17px;
     line-height: 22px;
-    background-color: #FF8C00;
+    background-color: #0C3B2E;;
 }
 
 .label {
@@ -36,6 +35,7 @@
     margin-bottom: 5px;
     margin-left: 10px;
     margin-top: 10px;
+    color: #0C3B2E;
 }
 
 .textInput{

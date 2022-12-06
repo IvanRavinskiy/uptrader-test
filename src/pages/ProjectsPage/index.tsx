@@ -36,7 +36,7 @@ export const ProjectsPage: FC = () => {
           onChange={event => onProjectTitleChange(event)}
           className={style.input}
         />
-        <Button backgroundColor="blue" textChildren="Add" onClick={addProjectPress} />
+        <Button backgroundColor="#FFBA00" textChildren="Add" onClick={addProjectPress} />
       </div>
 
       {projects.map(({ id, title }) => {

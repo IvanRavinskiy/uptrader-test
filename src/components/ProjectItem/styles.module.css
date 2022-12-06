@@ -6,16 +6,16 @@
     border-radius: 10px;
     padding: 5px;
     margin: 10px;
+    background-color: #BB8A52;
 
 }
 .title {
     font-style: normal;
     font-weight: 600;
-    font-size: 17px;
-    line-height: 44px;
+    font-size: 23px;
     margin-left: 20px;
 }
 .link {
-    color: #000000;
+    color: #FFFFFF;
     text-decoration: none;
 }

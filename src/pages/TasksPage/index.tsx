@@ -88,7 +88,7 @@ export const TasksPage: FC = () => {
           onClick={() => {
             setIsShowModal(true);
           }}
-          backgroundColor="purple"
+          backgroundColor="#FFBA00"
         />
       </div>
       <div className={style.table}>
@@ -96,7 +96,7 @@ export const TasksPage: FC = () => {
           {Object.entries(columns).map(([key, column]) => {
             return (
               <div key={key} className={style.tableColumn}>
-                <h2>{column.status}</h2>
+                <h2 className={style.columnTitle}>{column.status}</h2>
                 <Droppable droppableId={key}>
                   {(provided, snapshot) => {
                     return (

@@ -2,17 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 150px;
+    padding-top: 150px;
     margin-bottom: 50px;
 }
 .input {
-    border: #d2d2d2 solid 1px;
+    border: #6D9773 solid 1px;
     border-radius: 10px;
     padding: 5px;
     margin: 10px;
     width: 300px;
     height: 50px;
     box-sizing: border-box;
-    background-color: #FFFFFF;
+    background-color: #BB8A52;
 
 }

@@ -24,7 +24,7 @@ export const ProjectItem: FC<Project> = props => {
         <p className={style.title}>{title}</p>
         <Button
           onClick={() => deleteProjectPress(id)}
-          backgroundColor="red"
+          backgroundColor="#0C3B2E"
           textChildren="Delete"
         />
       </div>
