@@ -1,0 +1,27 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.veil {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    overflow: hidden;
+}
+
+.modal {
+    position: absolute;
+    overflow: hidden;
+    z-index: 10;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
+    left: 50%;
+}

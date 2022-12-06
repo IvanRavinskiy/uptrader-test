@@ -1,0 +1,44 @@
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.buttonLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 22px;
+    background-color: #FFBA00;
+    margin: 20px;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.table {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.columnTitle{
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.tableColumn{
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    min-width: 312px;
+    min-height: 500px;
+    padding: 15px;
+    margin: 15px;
+    justify-content: center;
+}

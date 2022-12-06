@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border: #d2d2d2 solid 1px;
+    border-radius: 10px;
+    width: 250px;
+    height: 150px;
+    padding: 10px;
+    margin: 20px;
+}
+
+.title {
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 25px;
+    margin: 0;
+}
+
+.description {
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 22px;
+    margin: 0;
+}
+
+.timesContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.deleteButton{
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #0C3B2E;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+}
+.editButton{
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #0C3B2E;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+}
