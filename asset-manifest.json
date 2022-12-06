@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd4acbbe.css",
-    "main.js": "/static/js/main.90bca168.js",
-    "static/media/photo.svg": "/static/media/photo.b4f3b65724ee715f35cab2620ddab900.svg",
-    "index.html": "/index.html",
-    "main.cd4acbbe.css.map": "/static/css/main.cd4acbbe.css.map",
-    "main.90bca168.js.map": "/static/js/main.90bca168.js.map"
+    "main.css": "/uptradet-test/static/css/main.cd4acbbe.css",
+    "main.js": "/uptradet-test/static/js/main.f9fa2e99.js",
+    "static/media/photo.svg": "/uptradet-test/static/media/photo.b4f3b65724ee715f35cab2620ddab900.svg",
+    "index.html": "/uptradet-test/index.html",
+    "main.cd4acbbe.css.map": "/uptradet-test/static/css/main.cd4acbbe.css.map",
+    "main.f9fa2e99.js.map": "/uptradet-test/static/js/main.f9fa2e99.js.map"
   },
   "entrypoints": [
     "static/css/main.cd4acbbe.css",
-    "static/js/main.90bca168.js"
+    "static/js/main.f9fa2e99.js"
   ]
 }
