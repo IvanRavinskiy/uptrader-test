@@ -1,3 +1,3 @@
 export { ACTIONS } from './actions';
 export { ROUTES } from './routes';
-export { STATUS, PRIORITY } from './tasks';
+export { STATUS, PRIORITY, ColumnIndex } from './tasks';

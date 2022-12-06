@@ -9,3 +9,9 @@ export enum PRIORITY {
   MEDIUM = 'Medium',
   HIGH = 'High',
 }
+
+export enum ColumnIndex {
+  QUEUE = '0',
+  DEVELOPMENT = '1',
+  DONE = '2',
+}

@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import photoForm from '../../assets/photo.svg';
-import { STATUS } from '../../constants';
 import { addTask } from '../../state/actions/tasks';
 import { Priority } from '../../state/reducers/tasks';
 import { FileInput } from '../FileInput';
@@ -61,7 +60,6 @@ export const Form: FC = () => {
     const { title, expiry, file, priority, description } = data;
     const startDate = new Date().toLocaleDateString('ru-RU');
     const taskId = String(Date.now());
-    const status = STATUS.QUEUE;
 
     if (id) {
       dispatch(
@@ -74,7 +72,6 @@ export const Form: FC = () => {
           file,
           startDate,
           taskId,
-          status,
         }),
       );
     }

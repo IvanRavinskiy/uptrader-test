@@ -1,6 +1,6 @@
 import { ACTIONS } from '../../constants';
 
-import { TaskType, UpdateTaskType } from 'state/reducers/tasks';
+import { Columns, TaskType, UpdateTaskType } from 'state/reducers/tasks';
 
 export const removeTask = (taskId: string, projectId: string) =>
   ({ type: ACTIONS.REMOVE_TASK, taskId, projectId } as const);
@@ -11,4 +11,10 @@ export const updateTask = (taskId: string, model: UpdateTaskType, projectId: str
     model,
     projectId,
     taskId,
+  } as const);
+export const dragDrop = (columns: Columns, projectId: string) =>
+  ({
+    type: ACTIONS.DRAG_DROP,
+    columns,
+    projectId,
   } as const);

@@ -2,6 +2,8 @@ import React, { FC, useState } from 'react';
 
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
+import { PRIORITY } from '../../constants';
+
 import style from './styles.module.css';
 
 import { FormValues } from 'components/Form';
@@ -45,19 +47,19 @@ export const RadioButton: FC<RadioButtonProps> = props => {
     <>
       <div className={style.radioContainer}>
         <RadioItem
-          value="Low"
+          value={PRIORITY.LOW}
           isActive={isActiveLow}
           onClick={onLowPress}
           register={register}
         />
         <RadioItem
-          value="Medium"
+          value={PRIORITY.MEDIUM}
           isActive={isActiveMedium}
           onClick={onMediumPress}
           register={register}
         />
         <RadioItem
-          value="High"
+          value={PRIORITY.HIGH}
           isActive={isActiveHigh}
           onClick={onHighPress}
           register={register}

@@ -1,12 +1,13 @@
-import { ACTIONS } from '../../constants';
+import { ACTIONS, ColumnIndex, STATUS } from '../../constants';
 import { addProject } from '../actions/projects';
-import { addTask, removeTask, updateTask } from '../actions/tasks';
+import { addTask, dragDrop, removeTask, updateTask } from '../actions/tasks';
 
 type ActionsType =
   | ReturnType<typeof removeTask>
   | ReturnType<typeof addTask>
   | ReturnType<typeof updateTask>
-  | ReturnType<typeof addProject>;
+  | ReturnType<typeof addProject>
+  | ReturnType<typeof dragDrop>;
 
 export type Priority = 'Low' | 'Medium' | 'High';
 
@@ -16,22 +17,26 @@ export type UpdateTaskType = {
   title?: string;
   description?: string;
   file?: null;
-  status?: Status;
   priority?: Priority;
   startDate?: string;
   expiry?: string;
 };
 
-type Column = {
+export type Column = {
   status: Status;
   items: TaskType[];
+};
+
+export type Columns = {
+  [ColumnIndex.QUEUE]: Column;
+  [ColumnIndex.DEVELOPMENT]: Column;
+  [ColumnIndex.DONE]: Column;
 };
 
 export type TaskType = {
   title: string;
   description: string;
   file: null;
-  status: Status;
   priority: Priority;
   startDate: string;
   expiry: string;
@@ -41,12 +46,7 @@ export type TaskType = {
 export type TasksStateType = {
   [key: string]: {
     tasks: TaskType[];
-    columns: {
-      0: Column;
-      1: Column;
-      // eslint-disable-next-line no-magic-numbers
-      2: Column;
-    };
+    columns: Columns;
   };
 };
 
@@ -63,21 +63,21 @@ export const tasksReducer = (
         [action.projectId]: {
           tasks: state[action.projectId].tasks.filter(t => t.taskId !== action.taskId),
           columns: {
-            0: {
-              status: state[action.projectId].columns['0'].status,
-              items: state[action.projectId].columns['0'].items.filter(
+            [ColumnIndex.QUEUE]: {
+              status: state[action.projectId].columns[ColumnIndex.QUEUE].status,
+              items: state[action.projectId].columns[ColumnIndex.QUEUE].items.filter(
                 el => el.taskId !== action.taskId,
               ),
             },
-            1: {
-              status: state[action.projectId].columns['1'].status,
-              items: state[action.projectId].columns['1'].items.filter(
-                el => el.taskId !== action.taskId,
-              ),
+            [ColumnIndex.DEVELOPMENT]: {
+              status: state[action.projectId].columns[ColumnIndex.DEVELOPMENT].status,
+              items: state[action.projectId].columns[
+                ColumnIndex.DEVELOPMENT
+              ].items.filter(el => el.taskId !== action.taskId),
             },
-            2: {
-              status: state[action.projectId].columns['2'].status,
-              items: state[action.projectId].columns['2'].items.filter(
+            [ColumnIndex.DONE]: {
+              status: state[action.projectId].columns[ColumnIndex.DONE].status,
+              items: state[action.projectId].columns[ColumnIndex.DONE].items.filter(
                 el => el.taskId !== action.taskId,
               ),
             },
@@ -91,9 +91,12 @@ export const tasksReducer = (
           tasks: [action.task, ...state[action.task.projectId].tasks],
           columns: {
             ...state[action.task.projectId].columns,
-            0: {
-              ...state[action.task.projectId].columns[0],
-              items: [...state[action.task.projectId].columns[0].items, action.task],
+            [ColumnIndex.QUEUE]: {
+              ...state[action.task.projectId].columns[ColumnIndex.QUEUE],
+              items: [
+                ...state[action.task.projectId].columns[ColumnIndex.QUEUE].items,
+                action.task,
+              ],
             },
           },
         },
@@ -106,21 +109,21 @@ export const tasksReducer = (
             t.taskId === action.taskId ? { ...t, ...action.model } : t,
           ),
           columns: {
-            0: {
-              status: state[action.projectId].columns['0'].status,
-              items: state[action.projectId].columns['0'].items.map(t =>
+            [ColumnIndex.QUEUE]: {
+              status: state[action.projectId].columns[ColumnIndex.QUEUE].status,
+              items: state[action.projectId].columns[ColumnIndex.QUEUE].items.map(t =>
                 t.taskId === action.taskId ? { ...t, ...action.model } : t,
               ),
             },
-            1: {
-              status: state[action.projectId].columns['1'].status,
-              items: state[action.projectId].columns['1'].items.map(t =>
-                t.taskId === action.taskId ? { ...t, ...action.model } : t,
+            [ColumnIndex.DEVELOPMENT]: {
+              status: state[action.projectId].columns[ColumnIndex.DEVELOPMENT].status,
+              items: state[action.projectId].columns[ColumnIndex.DEVELOPMENT].items.map(
+                t => (t.taskId === action.taskId ? { ...t, ...action.model } : t),
               ),
             },
-            2: {
-              status: state[action.projectId].columns['2'].status,
-              items: state[action.projectId].columns['2'].items.map(t =>
+            [ColumnIndex.DONE]: {
+              status: state[action.projectId].columns[ColumnIndex.DONE].status,
+              items: state[action.projectId].columns[ColumnIndex.DONE].items.map(t =>
                 t.taskId === action.taskId ? { ...t, ...action.model } : t,
               ),
             },
@@ -133,19 +136,27 @@ export const tasksReducer = (
         [action.project.id]: {
           tasks: [],
           columns: {
-            0: {
-              status: 'Queue',
+            [ColumnIndex.QUEUE]: {
+              status: STATUS.QUEUE,
               items: [],
             },
-            1: {
-              status: 'Development',
+            [ColumnIndex.DEVELOPMENT]: {
+              status: STATUS.DEVELOPMENT,
               items: [],
             },
-            2: {
-              status: 'Done',
+            [ColumnIndex.DONE]: {
+              status: STATUS.DONE,
               items: [],
             },
           },
+        },
+      };
+    case ACTIONS.DRAG_DROP:
+      return {
+        ...state,
+        [action.projectId]: {
+          tasks: state[action.projectId].tasks,
+          columns: action.columns,
         },
       };
     default:
