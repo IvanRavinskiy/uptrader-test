@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, memo, useCallback, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { getProjects } from '../../state/selectors/projects';
 
 import style from './styles.module.css';
 
-export const ProjectsPage: FC = () => {
+export const ProjectsPage: FC = memo(() => {
   const [projectTitle, setProjectTitle] = useState('');
 
   const dispatch = useDispatch();
@@ -19,13 +19,13 @@ export const ProjectsPage: FC = () => {
     setProjectTitle(e.currentTarget.value);
   };
 
-  const addProjectPress = (): void => {
+  const addProjectPress = useCallback((): void => {
     const id = String(Date.now());
 
     dispatch(addProject({ title: projectTitle, id }));
 
     setProjectTitle('');
-  };
+  }, [dispatch, projectTitle]);
 
   return (
     <div className={style.projectContainer}>
@@ -44,4 +44,4 @@ export const ProjectsPage: FC = () => {
       })}
     </div>
   );
-};
+});

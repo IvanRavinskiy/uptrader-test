@@ -4,6 +4,7 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { PRIORITY } from '../../constants';
 import { useRadioButtonHandle } from '../../hooks/useRadioButtonHandle';
+import { memo } from '../../utils/memo';
 
 import style from './styles.module.css';
 
@@ -21,7 +22,7 @@ type RadioButtonProps = {
   error: FieldErrors<FormValues>;
 };
 
-export const RadioButton: FC<RadioButtonProps> = props => {
+export const RadioButton: FC<RadioButtonProps> = memo(props => {
   const { register, error } = props;
 
   const {
@@ -58,9 +59,9 @@ export const RadioButton: FC<RadioButtonProps> = props => {
       <p className={style.error}>{error.priority?.message}</p>
     </>
   );
-};
+});
 
-const RadioItem: FC<RadioItemProps> = props => {
+const RadioItem: FC<RadioItemProps> = memo(props => {
   const { value, isActive, onClick, register } = props;
 
   const styleHigh = isActive ? style.radioActive : style.radio;
@@ -78,4 +79,4 @@ const RadioItem: FC<RadioItemProps> = props => {
       <p className={styleHigh}>{value}</p>
     </label>
   );
-};
+});

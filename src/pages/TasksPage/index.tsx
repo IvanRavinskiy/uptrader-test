@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import { Columns, TaskType } from '../../state/reducers/tasks';
 
 import style from './styles.module.css';
 
-export const TasksPage: FC = () => {
+export const TasksPage: FC = memo(() => {
   const [isShowModal, setIsShowModal] = useState(false);
 
   const { id } = useParams();
@@ -24,6 +24,10 @@ export const TasksPage: FC = () => {
     // @ts-ignore
     return state.tasks[id].columns;
   });
+
+  const onCreateTaskPress = useCallback(() => {
+    setIsShowModal(true);
+  }, []);
 
   if (!id) return <div>ERROR</div>;
 
@@ -85,9 +89,7 @@ export const TasksPage: FC = () => {
         </NavLink>
         <Button
           textChildren="Create task"
-          onClick={() => {
-            setIsShowModal(true);
-          }}
+          onClick={onCreateTaskPress}
           backgroundColor="#FFBA00"
         />
       </div>
@@ -155,4 +157,4 @@ export const TasksPage: FC = () => {
       </div>
     </div>
   );
-};
+});

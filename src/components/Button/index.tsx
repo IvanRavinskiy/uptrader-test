@@ -1,5 +1,7 @@
 import React, { FC, MouseEvent } from 'react';
 
+import { memo } from '../../utils/memo';
+
 import style from './styles.module.css';
 
 type ButtonProps = {
@@ -8,7 +10,7 @@ type ButtonProps = {
   backgroundColor: string;
 };
 
-export const Button: FC<ButtonProps> = props => {
+export const Button: FC<ButtonProps> = memo(props => {
   const { textChildren, onClick, backgroundColor } = props;
 
   const onButtonPress = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -26,4 +28,4 @@ export const Button: FC<ButtonProps> = props => {
       {textChildren}
     </button>
   );
-};
+});

@@ -6,11 +6,12 @@ import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import { removeProject } from '../../state/actions/projects';
 import { Project } from '../../state/reducers/projects';
+import { memo } from '../../utils/memo';
 import { Button } from '../Button';
 
 import style from './styles.module.css';
 
-export const ProjectItem: FC<Project> = props => {
+export const ProjectItem: FC<Project> = memo(props => {
   const { id, title } = props;
   const dispatch = useDispatch();
 
@@ -30,4 +31,4 @@ export const ProjectItem: FC<Project> = props => {
       </div>
     </NavLink>
   );
-};
+});
