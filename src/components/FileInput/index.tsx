@@ -23,6 +23,7 @@ export const FileInput: FC<PhotoInputProps> = props => {
       <label htmlFor={label} className={style.label}>
         {title}
       </label>
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className={style.inputPhotoContainer} htmlFor={label}>
         <img className={style.photo} alt="file" src={avatarPreview} />
       </label>
