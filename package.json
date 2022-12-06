@@ -2,6 +2,7 @@
   "name": "uptrader-test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://IvanRavinskiy.github.io/uptradet-test",
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@testing-library/jest-dom": "^5.14.1",
@@ -12,6 +13,7 @@
     "@types/react": "^18.0.0",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^18.0.0",
+    "gh-pages": "^4.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
@@ -31,6 +33,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
     "prepare": "husky install",
     "lint-fix": "eslint --fix"
   },
