@@ -5,6 +5,7 @@ import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
 import style from './styles.module.css';
 
 import { FormValues } from 'components/Form';
+import { memo } from 'utils/memo';
 
 type TextInputProps = {
   label: Path<FormValues>;
@@ -13,7 +14,7 @@ type TextInputProps = {
   error: FieldErrors<FormValues>;
 };
 
-export const TextInput: FC<TextInputProps> = props => {
+export const TextInput: FC<TextInputProps> = memo(props => {
   const { label, title, register, error } = props;
 
   return (
@@ -25,4 +26,4 @@ export const TextInput: FC<TextInputProps> = props => {
       <p className={style.error}>{error[label]?.message}</p>
     </>
   );
-};
+});

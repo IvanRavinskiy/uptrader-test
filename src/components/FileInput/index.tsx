@@ -2,6 +2,8 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
 
+import { memo } from '../../utils/memo';
+
 import style from './styles.module.css';
 
 import { FormValues } from 'components/Form';
@@ -15,7 +17,7 @@ type PhotoInputProps = {
   addPhoto: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const FileInput: FC<PhotoInputProps> = props => {
+export const FileInput: FC<PhotoInputProps> = memo(props => {
   const { label, title, register, error, addPhoto, avatarPreview } = props;
 
   return (
@@ -31,4 +33,4 @@ export const FileInput: FC<PhotoInputProps> = props => {
       <p className={style.error}>{error[label]?.message}</p>
     </>
   );
-};
+});

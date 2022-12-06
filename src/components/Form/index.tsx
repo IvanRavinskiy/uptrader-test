@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, memo, useCallback, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -32,7 +32,7 @@ const formSchema = Yup.object({
   priority: Yup.mixed().required('Required'),
 });
 
-export const Form: FC = () => {
+export const Form: FC = memo(() => {
   const { id } = useParams();
 
   const {
@@ -51,38 +51,44 @@ export const Form: FC = () => {
 
   const dispatch = useDispatch();
 
-  const addPhoto = (event: ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.files) {
-      setAvatarPreview(URL.createObjectURL(event.target.files?.[0]));
-      // @ts-ignore
-      setValue('file', event.target.files?.[0]);
-    }
-  };
+  const addPhoto = useCallback(
+    (event: ChangeEvent<HTMLInputElement>): void => {
+      if (event.target.files) {
+        setAvatarPreview(URL.createObjectURL(event.target.files?.[0]));
+        // @ts-ignore
+        setValue('file', event.target.files?.[0]);
+      }
+    },
+    [setValue],
+  );
 
-  const onSubmit: SubmitHandler<FormValues> = data => {
-    const { title, expiry, file, priority, description } = data;
-    const startDate = new Date().toLocaleDateString('ru-RU');
-    const taskId = String(Date.now());
+  const onSubmit: SubmitHandler<FormValues> = useCallback(
+    data => {
+      const { title, expiry, file, priority, description } = data;
+      const startDate = new Date().toLocaleDateString('ru-RU');
+      const taskId = String(Date.now());
 
-    if (id) {
-      dispatch(
-        addTask({
-          title,
-          expiry,
-          description,
-          priority,
-          projectId: id,
-          file,
-          startDate,
-          taskId,
-        }),
-      );
-    }
+      if (id) {
+        dispatch(
+          addTask({
+            title,
+            expiry,
+            description,
+            priority,
+            projectId: id,
+            file,
+            startDate,
+            taskId,
+          }),
+        );
+      }
 
-    setAvatarPreview(photoForm);
-    resetAllButtons();
-    reset();
-  };
+      setAvatarPreview(photoForm);
+      resetAllButtons();
+      reset();
+    },
+    [dispatch, id, reset, resetAllButtons],
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.formContainer}>
@@ -114,4 +120,4 @@ export const Form: FC = () => {
       </div>
     </form>
   );
-};
+});

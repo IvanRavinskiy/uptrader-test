@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { removeTask, updateTask } from '../../state/actions/tasks';
+import { memo } from '../../utils/memo';
 
 import style from './styles.module.css';
 
@@ -15,7 +16,7 @@ type TaskProps = {
   startDate: string;
 };
 
-export const Task: FC<TaskProps> = props => {
+export const Task: FC<TaskProps> = memo(props => {
   const { taskId, projectId, title, description, startDate, expiry } = props;
 
   const dispatch = useDispatch();
@@ -55,4 +56,4 @@ export const Task: FC<TaskProps> = props => {
       </div>
     </div>
   );
-};
+});
